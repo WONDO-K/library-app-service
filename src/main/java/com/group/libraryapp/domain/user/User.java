@@ -3,12 +3,16 @@ package com.group.libraryapp.domain.user;
 
 
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "users")
 public class User {
 
@@ -22,9 +26,6 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLoanHistory> userLoanHistoies = new ArrayList<>();
 
-    protected User() {
-
-    }
 
     public User(String name, Integer age) {
         if (name == null || name.isBlank()){
